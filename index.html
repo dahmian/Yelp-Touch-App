@@ -11,7 +11,7 @@
 	<form id="search">
 		<input name="term" placeholder="search term" autofocus required />
 		<input name="location" placeholder="location" required />
-		<button id="submit">go</button>
+		<button id="submit">Search</button>
 	</form>
 	<div id="searchResults"></div>
 </body>
@@ -65,6 +65,8 @@
 		  'dataType': 'jsonp',
 		  'jsonpCallback': 'cb',
 		  'success': function(data, textStats, XMLHttpRequest) {
+			  data.businesses.sort(sortResults);
+			  data.businesses.filter(filterResults);
 			console.log(data);
 			var compiledTemplate = Mustache.compile("{{#businesses}}<p>{{rating}} <a href={{url}}>{{name}}</a></p>{{/businesses}}");
 		    var templateOutput = compiledTemplate(data);
@@ -72,6 +74,22 @@
 		  }
 		});
 		return false;
+
+		  function sortResults(a, b) {
+			  if (a.rating < b.rating) {
+				return 1;
+				} else if (a.rating > b.rating) {
+				return -1
+				} else {
+				return 0
+			}
+		  }
+
+		  function filterResults(element, index, array) {
+			  if (element.is_closed === false) {
+				  return element.is_closed;
+			  }
+		  }
 	}
 </script>
 </html>
