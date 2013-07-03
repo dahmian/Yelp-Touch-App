@@ -9,8 +9,8 @@
 </head> 
 <body>
 	<form id="search">
-		<input name="term" value="burger"/>
-		<input name="location" value="92840"/>
+		<input name="term" placeholder="search term" autofocus required />
+		<input name="location" placeholder="location" required />
 		<button id="submit">go</button>
 	</form>
 	<div id="searchResults"></div>
@@ -65,8 +65,8 @@
 		  'dataType': 'jsonp',
 		  'jsonpCallback': 'cb',
 		  'success': function(data, textStats, XMLHttpRequest) {
-		    console.log(data.businesses);
-		    var compiledTemplate = Mustache.compile("{{#businesses}}<p>{{rating}} {{name}}</p>{{/businesses}}");
+			console.log(data);
+			var compiledTemplate = Mustache.compile("{{#businesses}}<p>{{rating}} <a href={{url}}>{{name}}</a></p>{{/businesses}}");
 		    var templateOutput = compiledTemplate(data);
 		    document.querySelector("#searchResults").innerHTML = templateOutput;
 		  }
