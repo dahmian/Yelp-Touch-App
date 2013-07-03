@@ -7,4 +7,4 @@ oauth.js
 sha1.js
 jquery.js
 
-Default to open now, with 4 stars or more. Just display rating, miles and title
+Default to open now, with 4 stars or more. Just display rating, miles and title. Sort by rating + number of ratings.
