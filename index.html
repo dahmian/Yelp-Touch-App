@@ -5,6 +5,7 @@
 <script type="text/javascript" src="oauth.js"></script>
 <script type="text/javascript" src="sha1.js"></script>
 <script type="text/javascript" src="mustache.js"></script>
+<script type="text/javascript" src="config.js"></script>
 
 </head> 
 <body>
@@ -25,16 +26,6 @@
 	function search(eventObj) {
 		var terms = eventObj.srcElement.querySelector("[name=term]").value;
 		var near = eventObj.srcElement.querySelector("[name=location]").value;
-
-		var auth = { 
-		  consumerKey: "", 
-		  consumerSecret: "",
-		  accessToken: "",
-		  accessTokenSecret: "",
-		  serviceProvider: { 
-		    signatureMethod: ""
-		  }
-		};
 
 
 		var accessor = {
@@ -97,5 +88,5 @@
     }
 	}
 </script>
-</html>
 
+</html>
