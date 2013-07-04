@@ -2,9 +2,14 @@ body {
   margin-top: 5%;
 }
 
+h1 {
+  font-family: Arial;
+  text-align: center;
+}
+
 input, button {
   display: block;
-  margin: .225% auto;
+  margin: .25em auto;
 }
 
 input{
@@ -12,6 +17,7 @@ input{
 }
 
 button{
+  margin-top: 1em;
 }
 
 div {
