@@ -27,6 +27,14 @@
 <script type="text/javascript" src="mustache.js"></script>
 <script type="text/javascript" src="config.js"></script>
 <script>
+  navigator.geolocation.getCurrentPosition(getPosition);
+
+  function getPosition(position) {
+    return {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    }
+  }
 	document.getElementById("search").onsubmit = search;
 
 	function search(eventObj) {
@@ -41,7 +49,7 @@
 
 		parameters = [];
 		parameters.push(['term', terms]);
-		parameters.push(['location', near]);
+		parameters.push(['ll', "33.777010600000004,-107.9136227"]);
 		parameters.push(['callback', 'cb']);
 		parameters.push(['oauth_consumer_key', auth.consumerKey]);
 		parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
