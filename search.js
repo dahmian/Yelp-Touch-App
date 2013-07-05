@@ -6,14 +6,15 @@ function search(terms, callback) {
     tokenSecret: auth.accessTokenSecret
   };
 
-  parameters = [];
-  parameters.push(['term', terms]);
-  parameters.push(['ll', "33.777010600000004,-107.9136227"]);
-  parameters.push(['callback', 'cb']);
-  parameters.push(['oauth_consumer_key', auth.consumerKey]);
-  parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-  parameters.push(['oauth_token', auth.accessToken]);
-  parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+  parameters = [
+    ['term', terms],
+    ['ll', "33.777010600000004,-107.9136227"],
+    ['callback', 'cb'],
+    ['oauth_consumer_key', auth.consumerKey],
+    ['oauth_consumer_secret', auth.consumerSecret],
+    ['oauth_token', auth.accessToken],
+    ['oauth_signature_method', 'HMAC-SHA1']
+  ];
 
   var message = { 
     'action': 'http://api.yelp.com/v2/search',
