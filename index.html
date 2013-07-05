@@ -27,7 +27,7 @@
     var buttons = document.querySelectorAll(".searchButton");
     for(var i = 0; i < buttons.length; i++) {
       var term = buttons[i].innerHTML;
-      buttons[i].onclick = search.bind(null, term);
+      buttons[i].onclick = search.bind(null, term, displayResults);
     }
 
     document.getElementById("otherButton").onclick = displaySearchOption;
@@ -37,7 +37,7 @@
     this.innerHTML = "Other<form><input autofocus></input><button>Search</button></form>";
     this.querySelector("form").onsubmit = function() {
       var term = this.querySelector("input").value;
-      search(term);
+      search(term, displayResults);
       return false;
     }
   }
@@ -51,7 +51,7 @@
     }
   }
 
-	function search(terms) {
+	function search(terms, callback) {
 
     alert(terms);
 		var accessor = {
@@ -86,7 +86,7 @@
 		  'cache': true,
 		  'dataType': 'jsonp',
 		  'jsonpCallback': 'cb',
-      'success': displayResults
+      'success': callback 
 		});
 		return false;
 	}
