@@ -7,18 +7,18 @@ function search(terms, callback) {
   };
 
   parameters = [
-    ['term', terms],
-    ['ll', "33.777010600000004,-107.9136227"],
-    ['callback', 'cb'],
-    ['oauth_consumer_key', auth.consumerKey],
-    ['oauth_consumer_secret', auth.consumerSecret],
-    ['oauth_token', auth.accessToken],
-    ['oauth_signature_method', 'HMAC-SHA1']
+    ["term", terms],
+    ["ll", "33.777010600000004,-107.9136227"],
+    ["callback", "cb"],
+    ["oauth_consumer_key", auth.consumerKey],
+    ["oauth_consumer_secret", auth.consumerSecret],
+    ["oauth_token", auth.accessToken],
+    ["oauth_signature_method", "HMAC-SHA1"]
   ];
 
   var message = { 
-    action: 'http://api.yelp.com/v2/search',
-    method: 'GET',
+    action: "http://api.yelp.com/v2/search",
+    method: "GET",
     parameters: parameters 
   };
 
@@ -32,8 +32,8 @@ function search(terms, callback) {
     url: message.action,
     data: parameterMap,
     cache: true,
-    dataType: 'jsonp',
-    jsonpCallback: 'cb',
+    dataType: "jsonp",
+    jsonpCallback: "cb",
     success: callback 
   });
   return false;
