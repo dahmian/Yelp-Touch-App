@@ -5,9 +5,9 @@
 </head> 
 <body>
   <div class="row">
-    <div class="searchButton">Sushi</div>
-    <div class="searchButton">Pizza</div>
-    <div class="searchButton">Burger</div>
+    <button class="searchButton">Sushi</button>
+    <button class="searchButton">Pizza</button>
+    <button class="searchButton">Burger</button>
   </div>
 	<form id="search">
     <h1>Yelp Touch Interface</h1>
@@ -27,6 +27,16 @@
 <script type="text/javascript" src="mustache.js"></script>
 <script type="text/javascript" src="config.js"></script>
 <script>
+  addEventHandlers();
+
+  function addEventHandlers() {
+    var buttons = document.querySelectorAll(".searchButton");
+    for(var i = 0; i < buttons.length; i++) {
+      var term = buttons[i].innerHTML;
+      buttons[i].onclick = search.bind(null, term);
+    }
+  }
+
   navigator.geolocation.getCurrentPosition(getPosition);
 
   function getPosition(position) {
@@ -37,11 +47,9 @@
   }
 	document.getElementById("search").onsubmit = search;
 
-	function search(eventObj) {
-		var terms = eventObj.srcElement.querySelector("[name=term]").value;
-		var near = eventObj.srcElement.querySelector("[name=location]").value;
+	function search(terms) {
 
-
+    alert(terms);
 		var accessor = {
 		  consumerSecret: auth.consumerSecret,
 		  tokenSecret: auth.accessTokenSecret
