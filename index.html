@@ -4,21 +4,15 @@
 <link rel="stylesheet" type="text/css" href="styles.css"></link>
 </head> 
 <body>
+  <h1>Yelp Touch Interface</h1>
   <div class="row">
     <button class="searchButton">Sushi</button>
     <button class="searchButton">Pizza</button>
     <button class="searchButton">Burger</button>
   </div>
-	<form id="search">
-    <h1>Yelp Touch Interface</h1>
-		<input name="term" placeholder="search term" autofocus required list="commonTerms"/>
-    <datalist id="commonTerms">
-      <option value="sushi"/>
-      <option value="ramen"/>
-    </datalist>
-		<input name="location" placeholder="location" required />
-		<button id="submit">Search</button>
-	</form>
+  <div class="row">
+    <button id="otherButton" class="searchButton">Other</button>
+  </div>
 	<div id="searchResults"></div>
 </body>
 <script type="text/javascript" src="jquery.js"></script> 
@@ -35,6 +29,17 @@
       var term = buttons[i].innerHTML;
       buttons[i].onclick = search.bind(null, term);
     }
+
+    document.getElementById("otherButton").onclick = displaySearchOption;
+  }
+
+  function displaySearchOption() {
+    this.innerHTML = "Other<form><input autofocus></input><button>Search</button></form>";
+    this.querySelector("form").onsubmit = function() {
+      var term = this.querySelector("input").value;
+      search(term);
+      return false;
+    }
   }
 
   navigator.geolocation.getCurrentPosition(getPosition);
@@ -45,7 +50,6 @@
       longitude: position.coords.longitude
     }
   }
-	document.getElementById("search").onsubmit = search;
 
 	function search(terms) {
 
