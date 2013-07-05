@@ -17,9 +17,9 @@ function search(terms, callback) {
   ];
 
   var message = { 
-    'action': 'http://api.yelp.com/v2/search',
-    'method': 'GET',
-    'parameters': parameters 
+    action: 'http://api.yelp.com/v2/search',
+    method: 'GET',
+    parameters: parameters 
   };
 
   OAuth.setTimestampAndNonce(message);
@@ -29,12 +29,12 @@ function search(terms, callback) {
   parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
 
   $.ajax({
-    'url': message.action,
-    'data': parameterMap,
-    'cache': true,
-    'dataType': 'jsonp',
-    'jsonpCallback': 'cb',
-    'success': callback 
+    url: message.action,
+    data: parameterMap,
+    cache: true,
+    dataType: 'jsonp',
+    jsonpCallback: 'cb',
+    success: callback 
   });
   return false;
 }
