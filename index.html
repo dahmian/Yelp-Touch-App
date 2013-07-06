@@ -23,13 +23,21 @@
 <script type="text/javascript" src="displayResults.js"></script>
 <script type="text/javascript" src="search.js"></script>
 <script>
-  addEventHandlers();
+  var latitude, longitude;
+  navigator.geolocation.getCurrentPosition(getPosition);
+
+  function getPosition(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    addEventHandlers();
+  }
+
 
   function addEventHandlers() {
     var buttons = document.querySelectorAll(".searchButton");
     for(var i = 0; i < buttons.length; i++) {
       var term = buttons[i].innerHTML;
-      buttons[i].onclick = search.bind(null, term, displayResults);
+      buttons[i].onclick = search.bind(null, term, latitude, longitude, displayResults);
     }
 
     document.getElementById("otherButton").onclick = displaySearchOption;
@@ -39,18 +47,10 @@
     this.innerHTML = "Other<form><input autofocus></input><button>Search</button></form>";
     this.querySelector("form").onsubmit = function() {
       var term = this.querySelector("input").value;
-      search(term, displayResults);
+      search(term, displayResults, latitude, longitude);
       return false;
     }
   }
 
-  navigator.geolocation.getCurrentPosition(getPosition);
-
-  function getPosition(position) {
-    return {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    }
-  }
 </script>
 </html>

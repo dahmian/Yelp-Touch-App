@@ -1,6 +1,5 @@
-function search(terms, callback) {
+function search(terms, latitude, longitude, callback) {
 
-  alert(terms);
   var accessor = {
     consumerSecret: auth.consumerSecret,
     tokenSecret: auth.accessTokenSecret
@@ -8,7 +7,7 @@ function search(terms, callback) {
 
   parameters = [
     ["term", terms],
-    ["ll", "33.777010600000004,-107.9136227"],
+    ["ll", latitude + "," + longitude],
     ["callback", "cb"],
     ["oauth_consumer_key", auth.consumerKey],
     ["oauth_consumer_secret", auth.consumerSecret],
